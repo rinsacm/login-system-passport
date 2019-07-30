@@ -7,7 +7,7 @@ let flash=require('connect-flash')
 let session=require('express-session')
 
 /* GET home page. */
-router.get('/',checkAuthenticaated, function(req, res, next) {
+router.get('/',checkAuthenticated, function(req, res, next) {
   res.render('index',{name:req.user.name});
 });
 
@@ -43,15 +43,13 @@ router.post('/logout',function (req,res,next) {
   res.redirect('/login')
 })
 router.post('/login',passport.authenticate('local.signin',{
-
+  successRedirect:'/',
   failureRedirect:'/login',
   failureFlash:true
-}),function (req,res,next) {
-  req.session.save(()=>res.redirect('/'))
-
 })
+)
 
-function checkAuthenticaated(req,res,next)
+function checkAuthenticated(req,res,next)
 {
   if(req.isAuthenticated())
     return next();
