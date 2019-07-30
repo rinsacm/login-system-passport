@@ -1,0 +1,31 @@
+<h1>Login</h1>
+<br>
+<div class="row">
+
+    {{#if hasError}}
+        <div style="color: red">
+            {{# each messages}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+    {{/if}}
+    <div class="col-md-4 col-md-offset-4">
+        <form action="/login" method="post" >
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" name="email" class="form-control">
+
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control">
+
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <br>
+    <a href="/register">Register</a>
+</div>
